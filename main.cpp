@@ -19,10 +19,10 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
 int onboard = 13;
 
 //String AP = "gogo-wifi2";       // CHANGE ME
-//String PASS = "860ow47tppb7p"; // CHANGE MEString API = "YOUR_API_KEY";   // CHANGE ME
+//String PASS = ""; // CHANGE MEString API = "YOUR_API_KEY";   // CHANGE ME
 String AP = "vivo1904";       // CHANGE ME
-String PASS = "e3a66d08ef2b"; // CHANGE MEString API = "YOUR_API_KEY";   // CHANGE ME
-String HOST = "139.180.186.167";
+String PASS = ""; // CHANGE MEString API = "YOUR_API_KEY";   // CHANGE ME
+String HOST = "";
 String PORT = "80";
 
 int countTrueCommand;
