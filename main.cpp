@@ -38,7 +38,7 @@ byte mac[] = { 0xDE, 0xAC, 0xBE, 0xEF, 0xFE, 0xED };
 double temp_sensor_adjust = 1.151; 
 int temp_min = 30; 
 
-// At command read and timeout cinfiguration
+// At command read and timeout configuration
 boolean AT_cmd_result = false;
 int AT_cmd_time;
 int at_fail_count = 0;
@@ -46,7 +46,7 @@ int at_fail_count = 0;
 unsigned long beginMicros, endMicros;
 unsigned long byteCount = 0;
 
-// ESP / Ethernet Selection
+// ESP-ETH Selection
 bool eth = false;
 
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
@@ -72,7 +72,7 @@ void setup() {
   pinMode(outPin2, OUTPUT);
   pinMode(onboardLED, OUTPUT);
 
-// Ethernet Mode initalisation
+// Ethernet Mode initalisation (DISABLED)
   if (eth == true){
 
   /*Serial.begin(9600);
@@ -125,7 +125,7 @@ void setup() {
   }
   else
   { 
-  // Ethernet Mode initalisation 
+  // Ethernet Mode initalisation (ENABLED)
   Serial.begin(9600);
   Serial.println("ESP MODE START");
   Serial.println("*****************************************************");
@@ -252,6 +252,7 @@ void sendDataPacket(String result2, double result3, String result4, String resul
   url += result10;
   //url += " HTTP/1.1";
 
+// Disabled for ESP MODE
   if (eth == true){
     
  //   Make a ETH HTTP request - Requires ETH Initailisation. Currently disabled.
@@ -271,7 +272,7 @@ eth == false;
   }
 
     else{
-  // Send ESP Packet Data  
+  // Send ESP Packet Data 
   sendATcmd("AT+CIPMUX=1", 15, "OK"); // Set minimum number of connectons
   digitalWrite(outPin2, LOW);
   sendATcmd("AT+CIPSTART=0,\"TCP\",\"" + HOST +"\"," + PORT, 20, "OK"); // Open TCP connection
@@ -369,6 +370,7 @@ double getTempSensorData() {
   Serial.println("Object Temp (C) ");
   Serial.println(tmp_result3);
 
+  // Sample sensor data within pre-definied limits.
   while  (tmp_result4 <= temp_min){
     digitalWrite(outPin2, HIGH);
     tmp_result4 = mlx.readObjectTempC();
