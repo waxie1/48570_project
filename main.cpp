@@ -154,8 +154,8 @@ static int wdt_result = 0;
 
 delay(200);
 
-/* //ESP to ETH Mode fallback
- if (eth == false){
+//ESP to ETH Mode fallback (DISABLED)
+/*  if (eth == false){
  
   if (loopcount >= 20){
     loopcount = 0;
